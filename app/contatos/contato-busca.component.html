@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+            <h3>Busca</h3>
+
+            <div class="form-group">
+                <label for="search"></label>
+                <input type="search" class="form-control" placeholder="Busca:" #searchBox (keyup)="search(searchBox.value)">
+            </div>
+
+            <ul class="list-group">
+                <li (click)="verDetalhe(c)" class="list-group-item cursor-pointer" *ngFor="let c of contatos | async">{{ c.nome }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
