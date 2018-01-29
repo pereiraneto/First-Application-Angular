@@ -5,7 +5,7 @@
 
             <div class="form-group">
                 <label for="search"></label>
-                <input type="search" class="form-control" placeholder="Busca:" #searchBox (keyup)="search(searchBox.value)">
+                <input type="search" class="form-control" placeholder="Busca:" [ngModel]="busca">
             </div>
 
             <ul class="list-group">

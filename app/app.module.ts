@@ -5,6 +5,7 @@ import {ContatosModule} from './contatos/contatos.module';
 import {AppRoutingModule} from './app-routing.module';
 import {HttpModule} from '@angular/http';
 import {DialogService} from './dialog.service';
+import {FormsModule} from '@angular/forms';
 
 import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {InMemoryDataService} from './in-memory-data.service';
@@ -14,6 +15,7 @@ import {InMemoryDataService} from './in-memory-data.service';
         AppRoutingModule,
         BrowserModule,
         ContatosModule,
+        FormsModule,
         HttpModule,
         InMemoryWebApiModule.forRoot(InMemoryDataService)
     ],

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, SimpleChange, SimpleChanges } from '@angular/core';
 import {Router} from '@angular/router';
 
 import {Observable} from 'rxjs/Observable';
@@ -6,9 +6,12 @@ import {Subject} from 'rxjs/Subject';
 
 import {Contato} from './contato.model';
 import {ContatoService} from './contato.service';
+
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/catch';
 
 @Component({
     moduleId: module.id,
@@ -21,10 +24,11 @@ import 'rxjs/add/operator/map';
     `]
 })
 
-export class ContatoBuscaComponent implements OnInit {
+export class ContatoBuscaComponent implements OnInit, OnChanges {
 
     contatos: Observable<Contato[]>;
     private termosDaBusca: Subject<any> = new Subject<any>();
+    @Input() busca: string;
 
     constructor(
         private contatoService: ContatoService,
@@ -41,6 +45,11 @@ export class ContatoBuscaComponent implements OnInit {
                 console.log(err);
                 return Observable.of<Contato[]>([]);
             }); 
+    }
+
+    ngOnChanges(changes: SimpleChanges): void{
+        let busca: SimpleChange = changes['busca'];
+        this.search(busca.currentValue);
     }
 
     search(termo: string): void {

@@ -16,6 +16,8 @@ const contato_service_1 = require("./contato.service");
 require("rxjs/add/operator/switchMap");
 require("rxjs/add/operator/debounceTime");
 require("rxjs/add/operator/map");
+require("rxjs/add/operator/distinctUntilChanged");
+require("rxjs/add/operator/catch");
 let ContatoBuscaComponent = class ContatoBuscaComponent {
     constructor(contatoService, router) {
         this.contatoService = contatoService;
@@ -33,6 +35,10 @@ let ContatoBuscaComponent = class ContatoBuscaComponent {
             return Observable_1.Observable.of([]);
         });
     }
+    ngOnChanges(changes) {
+        let busca = changes['busca'];
+        this.search(busca.currentValue);
+    }
     search(termo) {
         this.termosDaBusca.next(termo);
     }
@@ -41,6 +47,10 @@ let ContatoBuscaComponent = class ContatoBuscaComponent {
         this.router.navigate(link);
     }
 };
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], ContatoBuscaComponent.prototype, "busca", void 0);
 ContatoBuscaComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
