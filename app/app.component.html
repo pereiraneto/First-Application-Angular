@@ -18,4 +18,6 @@
 
   <router-outlet></router-outlet> 
 
-  <contato-busca [busca]="termo"></contato-busca>
+  <contato-busca [(busca)]="termo"></contato-busca>
+
+  <!-- [busca]="termo" (buscaChange)="termo=$event" == [(busca)] -->

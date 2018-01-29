@@ -5,11 +5,11 @@
 
             <div class="form-group">
                 <label for="search"></label>
-                <input type="search" class="form-control" placeholder="Busca:" [ngModel]="busca">
+                <input type="search" class="form-control" placeholder="Busca:" [ngModel]="busca" (ngModelChange)="search($event)">
             </div>
 
             <ul class="list-group">
-                <li (click)="verDetalhe(c)" class="list-group-item cursor-pointer" *ngFor="let c of contatos | async">{{ c.nome }}</li>
+                <li class="list-group-item cursor-pointer" *ngFor="let c of contatos | async" (click)="verDetalhe(c)">{{ c.nome }}</li>
             </ul>
         </div>
     </div>
